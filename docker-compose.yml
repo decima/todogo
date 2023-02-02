@@ -1,0 +1,7 @@
+version: "3.7"
+services:
+  todolist:
+    image: todolist:1.0
+    build: .
+    ports:
+      - 9010:9000
