@@ -7,11 +7,13 @@ import (
 	"github.com/prometheus/common/version"
 	"net/http"
 	"strconv"
+	"time"
 )
 
 type Task struct {
-	Description string `json:"description"`
-	Done        bool   `json:"done"`
+	Description string    `json:"description"`
+	Done        bool      `json:"done"`
+	CreatedAt   time.Time `json:"created_at"`
 }
 
 var taskList = []Task{}
@@ -19,7 +21,7 @@ var taskList = []Task{}
 // Pending Tasks metrics Example
 var nbPendingTasks = prometheus.NewGauge(prometheus.GaugeOpts{
 	Name: "nb_pending",
-	Help: "Number of hard-disk errors.",
+	Help: "Number of pending tasks.",
 })
 
 func init() {
