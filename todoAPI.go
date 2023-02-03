@@ -58,8 +58,11 @@ func main() {
 	r.GET("/delete", func(c *gin.Context) {
 		id, _ := strconv.Atoi(c.Query("id"))
 
-		//Pending task metrics
-		nbPendingTasks.Dec()
+		//Merci Felipe pour le tip :-)
+		if taskList[id].Done {
+			//Pending task metrics
+			nbPendingTasks.Dec()
+		}
 
 		taskList = append(taskList[:id], taskList[id+1:]...)
 		c.Redirect(302, "/")
